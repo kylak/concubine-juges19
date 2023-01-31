@@ -38,7 +38,7 @@
 		</style>
 
 <p style="font-size:0.8em; text-align: center;">
-	hébreu : touche <strong>h</strong>, lxx : touche <strong>l</strong>, chouraqui : touche <strong>c</strong>, kjv : touche <strong>k</strong> ; pour afficher ou cacher une version, appuyer sur sa touche associée.
+	hébreu : touche <strong onclick="core('h');">h</strong>, lxx : touche <strong onclick="core('l');">l</strong>, chouraqui : touche <strong onclick="core('c');">c</strong>, kjv : touche <strong onclick="core('k');">k</strong> ; pour afficher ou cacher une version, appuyer (ou cliquer) sur sa touche associée.
 </p>
 
 <div style="display: flex; justify-content: space-around;"> <!-- ou: center ? -->
@@ -304,23 +304,27 @@ for there was no man that took them into his house to lodging.
 			currentNbr += bool?1:-1;
 		}
 
-		document.addEventListener("keydown", function(event) {
-			if (event.key == "c") {
+		function core(key) {
+			if (key == "c") {
 				if (currentNbr != maxNbrPrll || isChouraquiDisplayed)
 					displayChouraqui(!isChouraquiDisplayed);
 			}
-			if (event.key == "k") {
+			if (key == "k") {
 				if (currentNbr != maxNbrPrll || isKJVDisplayed)
 				displayKJV(!isKJVDisplayed);
 			}
-			if (event.key == "l") {
+			if (key == "l") {
 				if (currentNbr != maxNbrPrll || isLXXDisplayed)
 					displayLXX(!isLXXDisplayed);
 			}
-			if (event.key == "h") {
+			if (key == "h") {
 				if (currentNbr != maxNbrPrll || isHebrewDisplayed)
 					displayHebrew(!isHebrewDisplayed);
 			}
+		}
+
+		document.addEventListener("keydown", function(event) {
+			core(event.key);
 		});
 		
 	</script>
